@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "lab-rab-5-6"
+version = "0.1.0"
+description = ""
+authors = ["AnastasiyaPyankova <nastya.pyankova.empty@gmail.com>"]
+readme = "README.md"
+packages = [{include = "lab_rab_5_6"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.3.2"
+sqlalchemy = "^2.0.17"
+flask-sqlalchemy = "^3.0.5"
+flask-migrate = "^4.0.4"
+python-dotenv = "^1.0.0"
+psycopg = "^3.1.9"
+psycopg2 = "^2.9.6"
+psycopg-binary = "^3.1.9"
+psycopg2-binary = "^2.9.6"
+blueprint = "^3.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
