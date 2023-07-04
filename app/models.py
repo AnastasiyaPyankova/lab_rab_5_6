@@ -1,5 +1,6 @@
 from .db import db
 from sqlalchemy import inspect
+from flask_login import UserMixin
 
 
 class BaseMixin(db.Model):
@@ -47,3 +48,12 @@ class Job(BaseMixin):
     division_id = db.Column(db.Integer, db.ForeignKey('divisions.id'), nullable=True)
     date_of_employment = db.Column(db.Date, nullable=False)
     date_of_dismissal = db.Column(db.Date, nullable=True)
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(500))
+    name = db.Column(db.String(100))

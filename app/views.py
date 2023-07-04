@@ -1,10 +1,16 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
+from flask_login import login_required, current_user
+
 
 from app import db
-from app.models import Employee, Position, Division, Job
+from app.models import Employee, Position, Division, Job, User
 
 bp = Blueprint('bp', __name__)
 
+
+@bp.route('/')
+def index():
+    return render_template('index.html')
 
 # Запросы для Employee
 
@@ -131,7 +137,9 @@ def delete_job():
 
 # Получение списка устроенных
 
-@bp.route('/job/get', methods=['GET'])
+
+@bp.route('/emp_list', methods=['GET'])
+@login_required
 def get_list_of_employees():
     jobs = Employee.query.join(Job).order_by(Job.date_of_employment)
     if request.args.get('division_id'):
@@ -140,4 +148,4 @@ def get_list_of_employees():
         jobs = jobs.filter(Job.date_of_employment > request.args.get('sort_after_date'))
     jobs = jobs.all()
     list_of_employees = [job.to_dict() for job in jobs]
-    return list_of_employees
+    return render_template("emp_list.html", emp_list=list_of_employees)
