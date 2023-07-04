@@ -103,13 +103,13 @@ def get_division():
 
 @bp.route('/job/add', methods=['POST'])
 def add_job():
-    employee = Employee.query.get(request.args.get('employee_id'))
-    position = Employee.query.get(request.args.get('position_id'))
-    division = Employee.query.get(request.args.get('division_id'))
+    employ = Employee.query.get(request.args.get('employee_id'))
+    pos = Position.query.get(request.args.get('position_id'))
+    div = Division.query.get(request.args.get('division_id'))
     data_job = {
-        "employee_id": employee.id,
-        "position_id": position.id,
-        "division_id": division.id,
+        "employee_id": employ.id,
+        "position_id": pos.id,
+        "division_id": div.id,
         "date_of_employment": request.args.get('date_of_employment'),
     }
     job = Job(**data_job)

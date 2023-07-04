@@ -45,5 +45,5 @@ class Job(BaseMixin):
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'), nullable=True)
     position_id = db.Column(db.Integer, db.ForeignKey('positions.id'), nullable=True)
     division_id = db.Column(db.Integer, db.ForeignKey('divisions.id'), nullable=True)
-    date_of_employment = db.Column(db.Date, nullable=True)
-    date_of_dismissal = db.Column(db.Date, nullable=False)
+    date_of_employment = db.Column(db.Date, nullable=False)
+    date_of_dismissal = db.Column(db.Date, nullable=True)
