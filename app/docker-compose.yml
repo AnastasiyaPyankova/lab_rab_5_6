@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: db
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=5051PiDoR5051
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=lb5_6
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  flask:
+    container_name: flask
+    image: dockerhub-flask_app:1.0.0
+    environment:
+      - DB_URL=postgresql://postgres:5051PiDoR5051@localhost:5432/lb5_6
+    build: ..
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
